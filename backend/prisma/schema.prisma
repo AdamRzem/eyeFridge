@@ -12,13 +12,13 @@ datasource db {
 }
 
 model Contents {
-  id             String   @id @default(cuid())
+  id             Int      @id @default(autoincrement())
   type           String
   insertion_date DateTime
 }
 
 model PullOut {
-  id            String   @id @default(cuid())
+  id            Int      @id @default(autoincrement())
   type          String
   pull_out_data DateTime
 }
