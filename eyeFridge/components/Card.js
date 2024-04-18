@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Button, Avatar, Card, Title, Paragraph } from 'react-native-paper';
 import { FlatList, View, Text } from 'react-native';
 
@@ -54,21 +54,44 @@ const Item = ({title}) => (
   </View>
 );
 
-const Main = ({ title }) => { 
-  return (
-    <Card className ='mb-5'>
-      <Card.Title title={title} left={LeftContent} />
-      <Card.Content>
-        <FlatList
+const roz = () => {
+  return(
+    <View className = 'contaier'>
+      <FlatList
         data={WYNIK}
         renderItem={({item}) => <Item title={item.title} />}
         keyExtractor={item => item.id}
       />
+    </View>
+  );
+}
+
+const Main = ({ title }) => { 
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleOkPress = () => setIsExpanded(!isExpanded);
+  const handleCancelPress = () => setIsExpanded(false);
+  return (
+    <Card className="m-5">
+      <Card.Title title={title} left={LeftContent} />
+      <Card.Content>
+        {isExpanded && (
+          <FlatList
+            data={WYNIK}
+            renderItem={({ item }) => <Item title={item.title} />}
+            keyExtractor={item => item.id}
+          />
+        )}
       </Card.Content>
-      <Card.Actions>
-        <Button>Cancel</Button>
-        <Button>Ok</Button>
-      </Card.Actions>
+      
+        <Card.Actions>
+          {isExpanded && (<Button onPress={handleCancelPress}>Cancel</Button>)}
+          
+          {!isExpanded && (
+          <Button onPress={handleOkPress}>Ok</Button>
+          )}
+        </Card.Actions>
+      
     </Card>
   );
 }

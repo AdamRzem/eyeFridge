@@ -35,7 +35,7 @@ const lightTheme = {
 };
 
 const darkTheme = {
-  backgroundColor: '#3e3e3e', // Dark background
+  backgroundColor: 'rgb(30 41 59)', // Dark background
   textColor: '#fff', // Light text
   // ... other styles for dark theme
 };
@@ -45,11 +45,14 @@ const notificationMessage = "Check and use these items before they go bad!";
 const delay = 10000; // 10 seconds delay (you can adjust this)
 
 
+async function triggerNotification() {
+  scheduleNotification(notificationTitle, notificationMessage, delay);
+  console.log('działa?');
+}
+triggerNotification();
 
 
  const App = () => {
-
-  // scheduleNotification(notificationTitle, notificationMessage, delay);
   const [currentTheme, setCurrentTheme] = useState(lightTheme); 
 
   const toggleSwitch = () => {
@@ -70,7 +73,6 @@ const delay = 10000; // 10 seconds delay (you can adjust this)
       <Appbar.BackAction onPress={() => (console.log('dziala'))} />
       <Appbar.Content title="eyeFridge" />
       <Switch
-        backgroundColor="#3e3e3e"
         onValueChange={toggleSwitch}
         value={isEnabled}
       />
@@ -78,9 +80,9 @@ const delay = 10000; // 10 seconds delay (you can adjust this)
       
       </Appbar>
       <ScrollView>
-      <Main title={'Zawartość twojej lodówki: '}/>
-      <Main title={'Brakujące produkty: '} />
-      <Main title={'Przeterminowane rzeczy: '} />
+      <Main title={'Zawartość twojej lodówki'}/>
+      <Main title={'Brakujące produkty'} />
+      <Main title={'Przeterminowane rzeczy'} />
       
  
       {/* <Nav /> */}
