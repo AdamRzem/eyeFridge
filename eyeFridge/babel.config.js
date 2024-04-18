@@ -1,11 +1,14 @@
-module.exports = function(api) {
+module.exports = function (api) {
   api.cache(true);
-  // babel.config.js
-module.exports = {
-  plugins: ["nativewind/babel"],
-};
+
   return {
-    presets: ['babel-preset-expo'],
-    
-  };
+    plugins: ["nativewind/babel",
+    ]
+    , presets: [
+
+      'babel-preset-expo',
+    ],
+
+  }
 };
+
