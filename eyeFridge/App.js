@@ -101,3 +101,19 @@ export default App
 // npm install --global eas-cli && npx create-expo-app eyefridge && cd eyefridge && eas init --id 3b2423e6-700e-496c-9e57-5bbd74a9f7af
 
 // npm install --global eas-cli && eas init --id 3b2423e6-700e-496c-9e57-5bbd74a9f7af
+
+
+/*   android/build.gradle
+ext {
+    googlePlayServicesVersion = "<Your play services version>" // default: "+"
+    firebaseMessagingVersion = "<Your Firebase version>" // default: "21.1.0"
+
+    // Other settings
+    compileSdkVersion = <Your compile SDK version> // default: 23
+    buildToolsVersion = "<Your build tools version>" // default: "23.0.1"
+    targetSdkVersion = <Your target SDK version> // default: 23
+    supportLibVersion = "<Your support lib version>" // default: 23.1.1
+}
+
+https://www.npmjs.com/package/react-native-push-notification
+*/
