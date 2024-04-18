@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Button, Avatar, Card, Title, Paragraph } from 'react-native-paper';
+import { Button, Avatar, Card, Title, Paragraph, Image } from 'react-native-paper';
 import { FlatList, View, Text } from 'react-native';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
