@@ -4,8 +4,28 @@ import { Appbar, Avatar, Button, Card, Title, Paragraph, Switch } from 'react-na
 import Nav from './components/Navigation'
 import Main from './components/Card';
 import Theme from './components/Theme';
-import { useColorScheme } from 'nativewind';
 import PushNotification from 'react-native-push-notification';
+
+const scheduleNotification = (title, message, delay) => {
+    PushNotification.localNotification({
+        /* Android Properties */
+        channelId: "3ac68afc-c605-48d3-a4f8-fbd91aa97f70", // Required for Android 8.0 (Oreo) and higher
+        title, // (optional) (string) Title of the notification
+        message, // (required) (string) Message of the notification.
+        playSound: true, // (optional) (bool) Whether or not to play the default sound.
+        vibrate: true, // (optional) (bool) Whether or not to vibrate the device. 
+        vibration: 300, // (optional) (mixed) Vibration pattern in milliseconds (duration), or a predefined vibration string (e.g., vibration: 'long')
+
+
+        // number: 10, 
+
+        when: Date.now() + delay, // (optional) (Date) When the notification should be triggered. If missing, it will be shown immediately.
+
+        priority: "high", // (optional) (string) The priority of the notification (default: "high").
+        visibility: "public", // (optional) (string) The visibility of the notification (default: "private").
+        importance: "high", // (optional) (string) [Android] Importance of the notification (default: "high").
+    });
+};
 
 
 const lightTheme = {
@@ -20,8 +40,16 @@ const darkTheme = {
   // ... other styles for dark theme
 };
 
+const notificationTitle = "Your fridge has expiring items!";
+const notificationMessage = "Check and use these items before they go bad!";
+const delay = 10000; // 10 seconds delay (you can adjust this)
+
+
+
+
  const App = () => {
 
+  // scheduleNotification(notificationTitle, notificationMessage, delay);
   const [currentTheme, setCurrentTheme] = useState(lightTheme); 
 
   const toggleSwitch = () => {
@@ -29,6 +57,7 @@ const darkTheme = {
     setCurrentTheme(isEnabled ? lightTheme : darkTheme); 
   };
   
+
 
   const [isEnabled, setIsEnabled] = useState(false);
   
