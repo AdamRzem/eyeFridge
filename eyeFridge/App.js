@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View, SafeAreaView, Image, FlatList  } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, Image, FlatList, ScrollView  } from 'react-native'
 import React, { useContext, useState, useEffect } from 'react'
 import { Appbar, Avatar, Button, Card, Title, Paragraph, Switch } from 'react-native-paper';
 import Nav from './components/Navigation'
 import Main from './components/Card';
 import Theme from './components/Theme';
 import { useColorScheme } from 'nativewind';
-import { NavigationContainer } from '@react-navigation/native';
+import PushNotification from 'react-native-push-notification';
 
 
 const lightTheme = {
@@ -21,7 +21,7 @@ const darkTheme = {
 };
 
  const App = () => {
-  const {colorScheme, toggleColorScheme} = useColorScheme();
+
   const [currentTheme, setCurrentTheme] = useState(lightTheme); 
 
   const toggleSwitch = () => {
@@ -30,17 +30,15 @@ const darkTheme = {
   };
   
 
-
   const [isEnabled, setIsEnabled] = useState(false);
-  // const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
+  
 
   const _handleMore = () => console.log('Shown more');
 
   return (
-    <View style={{flex: 1, flexDirection: 'column', backgroundColor: currentTheme.backgroundColor, textColor: currentTheme.textColor}} className = 'dark:bg-slate-800 bg-slate-100'>
+    <View style={{flex: 1, flexDirection: 'column', backgroundColor: currentTheme.backgroundColor, textColor: currentTheme.textColor, paddingTop: 20, paddingBottom: 20}} >
       <Appbar style={{marginBottom: 10, backgroundColor: currentTheme.backgroundColor, textColor: currentTheme.textColor}} >
-      <Appbar.BackAction onPress={window.history.back()} />
+      <Appbar.BackAction onPress={() => (console.log('dziala'))} />
       <Appbar.Content title="eyeFridge" />
       <Switch
         backgroundColor="#3e3e3e"
@@ -50,14 +48,14 @@ const darkTheme = {
       <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
       
       </Appbar>
-      
+      <ScrollView>
       <Main title={'Zawartość twojej lodówki: '}/>
       <Main title={'Brakujące produkty: '} />
       <Main title={'Przeterminowane rzeczy: '} />
       
  
       {/* <Nav /> */}
-
+      </ScrollView>
         
    
     </View>
