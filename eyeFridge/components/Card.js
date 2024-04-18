@@ -1,5 +1,4 @@
 import React from 'react';
-import { withExpoSnack } from 'nativewind';
 import { Button, Avatar, Card, Title, Paragraph } from 'react-native-paper';
 import { FlatList, View, Text } from 'react-native';
 
