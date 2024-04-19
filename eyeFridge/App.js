@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { Appbar, Avatar, Button, Card, Title, Paragraph, Switch } from 'react-native-paper';
 import Nav from './components/Navigation'
 import Main from './components/Card';
-import Theme from './components/Theme';
+import Show from './components/Show';
 import PushNotification from 'react-native-push-notification';
 
 const scheduleNotification = (title, message, delay) => {
@@ -31,12 +31,14 @@ const scheduleNotification = (title, message, delay) => {
 const lightTheme = {
   backgroundColor: '#f4f3f4', // Light background
   textColor: '#333', // Dark text
+  appbarTextColor: '#333', // AppbarTextColor
   // ... other styles for light theme
 };
 
 const darkTheme = {
   backgroundColor: 'rgb(30 41 59)', // Dark background
   textColor: '#fff', // Light text
+  appbarTextColor: '#fff',
   // ... other styles for dark theme
 };
 
@@ -57,7 +59,11 @@ triggerNotification();
 
   const toggleSwitch = () => {
     setIsEnabled(previousState => !previousState);
+    const newAppbarTheme = {
+      color: isEnabled ? lightTheme.textColor : darkTheme.textColor, // Set text color based on switch
+    };
     setCurrentTheme(isEnabled ? lightTheme : darkTheme); 
+    // setCurrentTheme({ ...currentTheme, appBarTitle: newAppbarTheme }, isEnabled ? lightTheme.textColor : darkTheme.textColor);
   };
   
 
@@ -71,7 +77,7 @@ triggerNotification();
     <View style={{flex: 1, flexDirection: 'column', backgroundColor: currentTheme.backgroundColor, textColor: currentTheme.textColor, paddingTop: 20, paddingBottom: 20}} >
       <Appbar style={{marginBottom: 10, backgroundColor: currentTheme.backgroundColor, textColor: currentTheme.textColor}} >
       <Appbar.BackAction onPress={() => (console.log('dziala'))} />
-      <Appbar.Content title="eyeFridge" />
+      <Appbar.Content title="eyeFridge" style={{ color: currentTheme.appBarTitle?.color || currentTheme.textColor }}/>
       <Switch
         onValueChange={toggleSwitch}
         value={isEnabled}
@@ -84,7 +90,7 @@ triggerNotification();
       <Main title={'Brakujące produkty'} />
       <Main title={'Przeterminowane rzeczy'} />
       
- 
+      <Show />
       {/* <Nav /> */}
       </ScrollView>
         

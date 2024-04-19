@@ -85,10 +85,10 @@ const Main = ({ title }) => {
       </Card.Content>
       
         <Card.Actions>
-          {isExpanded && (<Button onPress={handleCancelPress}>Cancel</Button>)}
+          {isExpanded && (<Button onPress={handleCancelPress}>Less</Button>)}
           
           {!isExpanded && (
-          <Button onPress={handleOkPress}>Ok</Button>
+          <Button onPress={handleOkPress}>More</Button>
           )}
         </Card.Actions>
       
