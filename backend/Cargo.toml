@@ -11,4 +11,9 @@ prisma-client-rust-cli = { git = "https://github.com/Brendonovich/prisma-client-
 serde = { version = "1.0", features = ["derive"] }
 actix-web = "4"
 tokio = { version = "1.37.0", features = ["full"] }
-# opencv = "0.90.0"
+# eye = "0.5.0"
+image = "0.25.1"
+yuv = "0.1.5"
+nokhwa = { git = "https://github.com/l1npengtul/nokhwa.git",branch = "0.10", features = ["input-native"] }
+# uvc = "0.2.0"
+# opencv = { version = "*", features = ["clang-runtime","buildtime-bindgen"] }
