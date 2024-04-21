@@ -1,10 +1,17 @@
 import { StyleSheet, Text, View, SafeAreaView, Image, FlatList, ScrollView  } from 'react-native'
 import React, { useContext, useState, useEffect } from 'react'
 import { Appbar, Avatar, Button, Card, Title, Paragraph, Switch } from 'react-native-paper';
-import Nav from './components/Navigation'
+import AppNavigator from './components/Navigation'
 import Main from './components/Card';
 import Show from './components/Show';
+import goBack from './components/GoBack';
+import MainTwo from './components/temp/CardTwo';
+import Termin from './components/temp/OutOfTermin';
+import Help from './components/temp/Help';
 import PushNotification from 'react-native-push-notification';
+import { NavigationContainer } from '@react-navigation/native';
+import Link from '@react-navigation/native';
+
 
 const scheduleNotification = (title, message, delay) => {
     PushNotification.localNotification({
@@ -54,14 +61,16 @@ async function triggerNotification() {
 triggerNotification();
 
 
- const App = () => {
+
+
+
+
+
+ const App = ({ navigation }) => {
   const [currentTheme, setCurrentTheme] = useState(lightTheme); 
 
   const toggleSwitch = () => {
     setIsEnabled(previousState => !previousState);
-    const newAppbarTheme = {
-      color: isEnabled ? lightTheme.textColor : darkTheme.textColor, // Set text color based on switch
-    };
     setCurrentTheme(isEnabled ? lightTheme : darkTheme); 
     // setCurrentTheme({ ...currentTheme, appBarTitle: newAppbarTheme }, isEnabled ? lightTheme.textColor : darkTheme.textColor);
   };
@@ -74,9 +83,9 @@ triggerNotification();
   const _handleMore = () => console.log('Shown more');
 
   return (
-    <View style={{flex: 1, flexDirection: 'column', backgroundColor: currentTheme.backgroundColor, textColor: currentTheme.textColor, paddingTop: 20, paddingBottom: 20}} >
+    <SafeAreaView style={{flex: 1, flexDirection: 'column', backgroundColor: currentTheme.backgroundColor, textColor: currentTheme.textColor, paddingTop: 20, paddingBottom: 20}} >
       <Appbar style={{marginBottom: 10, backgroundColor: currentTheme.backgroundColor, textColor: currentTheme.textColor}} >
-      <Appbar.BackAction onPress={() => (console.log('dziala'))} />
+      <Appbar.BackAction onPress={this._goBack} />
       <Appbar.Content title="eyeFridge" style={{ color: currentTheme.appBarTitle?.color || currentTheme.textColor }}/>
       <Switch
         onValueChange={toggleSwitch}
@@ -87,18 +96,24 @@ triggerNotification();
       </Appbar>
       <ScrollView>
       <Main title={'Zawartość twojej lodówki'}/>
-      <Main title={'Brakujące produkty'} />
-      <Main title={'Przeterminowane rzeczy'} />
+      <MainTwo title={'Brakujące produkty'} />
+      <Termin title={'Przeterminowane rzeczy'} />
+      <Help title={'Podpowiedzi'} />
       
       <Show />
-      {/* <Nav /> */}
+      <NavigationContainer>
+      {/* <Button onPress={() => navigation.navigate('Two')} title="Go to App">Idź</Button> */}
+      {/* <AppNavigator /> */}
+      </NavigationContainer>
+      {/* <Link to={{'./components/Two.js'}}>Two</Link> */}
+    
       </ScrollView>
         
    
-    </View>
+    </SafeAreaView>
     
   )
-}
+};
 
 
 export default App
@@ -122,4 +137,61 @@ ext {
 }
 
 https://www.npmjs.com/package/react-native-push-notification
+*/
+
+
+
+/*
+podstrona z przepisami
+podpowiedzi 
+lista zakupów 
+*/
+
+/*
+import * as React from 'react';
+import { Button, View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+function HomeScreen({ navigation: { navigate } }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>This is the home screen of the app</Text>
+      <Button
+        onPress={() =>
+          navigate('Profile', { names: ['Brent', 'Satya', 'Michaś'] })
+        }
+        title="Go to Brent's profile"
+      />
+    </View>
+  );
+}
+
+function ProfileScreen({ navigation, route }) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Profile Screen</Text>
+      <Text>Friends: </Text>
+      <Text>{route.params.names[0]}</Text>
+      <Text>{route.params.names[1]}</Text>
+      <Text>{route.params.names[2]}</Text>
+      <Button title="Go back" onPress={() => navigation.goBack()} />
+    </View>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
 */

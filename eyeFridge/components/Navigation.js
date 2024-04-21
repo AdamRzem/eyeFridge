@@ -1,30 +1,17 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import App from '../App';
-//import DetailsScreen from './screens/DetailsScreen';
+import Two from './Two';
 
 const Stack = createStackNavigator();
 
-const Nav = () => {
+const AppNavigator = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={App}
-          options={{ title: 'Home Screen' }}
-        />
-        {/* <Stack.Screen
-          name="Details"
-          component={DetailsScreen}
-          options={{ title: 'Details Screen' }}
-        /> */}
-      </Stack.Navigator>
-    </NavigationContainer>
-
+<Stack.Navigator initialRouteName="App">
+          <Stack.Screen name="App" component={App} />
+          <Stack.Screen name="Two" component={Two} />
+        </Stack.Navigator>
   );
 };
 
-export default Nav;
+export default AppNavigator;
+

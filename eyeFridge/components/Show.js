@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { View, Text } from 'react-native';
 
 const Show = () => {
   const [contents, setContents] = useState([]);
@@ -21,9 +22,9 @@ const Show = () => {
   }, []); // Fetch data on component mount
 
   return (
-    <div>
+    <View>
       {isLoading ? (
-        <p>Loading contents...</p>
+        <Text>Loading contents...</Text>
       ) : (
         // Render content here using contents state
         <ul>
@@ -32,7 +33,7 @@ const Show = () => {
           ))}
         </ul>
       )}
-    </div>
+    </View>
   );
 };
 

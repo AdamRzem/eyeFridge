@@ -7,15 +7,15 @@ const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 const DATA = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'Margaryna',
+    title: 'Pomidor',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Ser',
+    title: 'Ogórek',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Ketchup',
+    title: 'Masło',
   },
   // {
   //   id: '58694a0f-3da1-471f-bd96-145571e29d91',
@@ -69,7 +69,7 @@ const Item = ({title}) => (
 
 
 
-const Main = ({ title }) => { 
+const MainTwo = ({ title }) => { 
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleOkPress = () => setIsExpanded(!isExpanded);
@@ -102,4 +102,4 @@ const Main = ({ title }) => {
   );
 }
 
-export default Main;
+export default MainTwo;
