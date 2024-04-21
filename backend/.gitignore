@@ -3,3 +3,5 @@ node_modules
 .env
 target
 src/prisma.rs
+*.jpg
+*.env
